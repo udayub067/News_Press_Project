@@ -1,0 +1,26 @@
+{
+    "users":[
+        {
+            "id":89898,
+            "name":"Shakti",
+            "age":23,
+            "email":"shaktiub069@gmail.com",
+            "pass":9090,
+            "gender":"male",
+            "phno":9827450542,
+            "role":"student"
+        }
+    ],
+    "admin":[
+       {
+        "id": 89898,
+        "name": "Uday",
+        "age": 23,
+        "email": "udayub069@gmail.com",
+        "pass": 9090,
+        "gender": "male",
+        "phno": 9827450542,
+        "role":"Admin"
+       }
+    ]
+}
