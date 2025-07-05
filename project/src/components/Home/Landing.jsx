@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { FiSearch } from 'react-icons/fi';
+import { IoReorderThree } from "react-icons/io5";
 
 const Landing = () => {
+  const [open,setOpen]=useState(false)
   return (
     <div className=" h-[100vh] w-full flex flex-col">
       <div className=" h-[70px] w-full flex justify-between ">
@@ -26,22 +28,55 @@ const Landing = () => {
             </text>
           </svg>
         </div>
-        <div className=" w-[30%] h-full flex items-center justify-center ">
-          <div className="w-[90%] h-[60%]  rounded-2xl flex items-center justify-start ps-3 gap-2 ">
-            <div className='text-[23px]'>
-              <FiSearch />
-            </div>
-            <input
-              type="text"
-              className="w-[300px] h-[70%] rounded-xl  border-solid border-2 border-black "
-            />
-            <button className="text-[18px] bg-gray-400 w-[80px] h-[30px] hover:scale-105 transition-transform duration-300 rounded-xl text-black font-bold">
-              Search
-            </button>
+
+        <div className="w-[30%] h-full custom:hidden">
+          <div onClick={() => setOpen(!open)}>
+            <IoReorderThree />
+          </div>
+          <div>
+            {open ? (
+              <>
+                <ul className="h-full w-[60%] flex items-center justify-around  text-[22px] font-semibold">
+                  <li className="hover:text-indigo-600 hover:scale-105 transition-transform duration-300">
+                    Home
+                  </li>
+                  <li className="hover:text-indigo-600 hover:scale-105 transition-transform duration-300">
+                    About
+                  </li>
+                  <li className="hover:text-indigo-600 hover:scale-105 transition-transform duration-300">
+                    Service
+                  </li>
+                  <li className="hover:text-indigo-600 hover:scale-105 transition-transform duration-300">
+                    Contact
+                  </li>
+                </ul>
+                <button className="text-[18px] bg-gradient-to-r from-teal-200 via-emerald-300 to-green-400 w-[90px] h-[40px] rounded-xl text-black font-bold shadow-md hover:scale-105 transition-transform duration-300">
+                  Log In
+                </button>
+              </>
+            ) : (
+              ""
+            )}
           </div>
         </div>
-        <div className=" w-[40%] h-full flex items-center justify-center">
-          <ul className="h-full w-[80%] flex items-center justify-around text-[22px] font-semibold">
+
+        {/* for desktop all nav button */}
+        <div className=" w-[70%] h-full  hidden custom:flex items-center justify-center ">
+          <div className=" w-[35%] h-full flex items-center justify-center ">
+            <div className="w-[90%] h-[60%]  rounded-2xl flex items-center justify-start ps-3 gap-2 ">
+              <div className="text-[23px]">
+                <FiSearch />
+              </div>
+              <input
+                type="text"
+                className="w-[300px] h-[70%] rounded-xl  border-solid border-2 border-black "
+              />
+              <button className="text-[18px] bg-gray-400 w-[80px] h-[30px] hover:scale-105 transition-transform duration-300 rounded-xl text-black font-bold">
+                Search
+              </button>
+            </div>
+          </div>
+          <ul className="h-full w-[60%] flex items-center justify-around  text-[22px] font-semibold">
             <li className="hover:text-indigo-600 hover:scale-105 transition-transform duration-300">
               Home
             </li>
@@ -67,3 +102,6 @@ const Landing = () => {
 }
 
 export default Landing
+
+
+
