@@ -1,13 +1,18 @@
-import React, { useState } from 'react'
-import { FiSearch } from 'react-icons/fi';
+import React, { useState } from "react";
+import { FiSearch } from "react-icons/fi";
 import { IoReorderThree } from "react-icons/io5";
 
+const navLinks = ["Home", "About", "Service", "Contact"];
+
 const Landing = () => {
-  const [open,setOpen]=useState(false)
+  const [open, setOpen] = useState(false);
+
   return (
-    <div className=" h-[100vh] w-full flex flex-col">
-      <div className=" h-[70px] w-full flex justify-between ">
-        <div className=" w-[30%] h-full flex items-center justify-center">
+    <div className="h-screen w-full flex flex-col">
+      {/* Header */}
+      <header className="h-[70px] w-full flex justify-between items-center px-4">
+        {/* Logo */}
+        <div className="w-[30%] flex items-center justify-start">
           <svg
             width="280"
             height="60"
@@ -29,79 +34,74 @@ const Landing = () => {
           </svg>
         </div>
 
-        <div className="w-[30%] h-full custom:hidden">
-          <div onClick={() => setOpen(!open)}>
+        {/* Mobile Menu Icon */}
+        <div className="w-[30%] flex justify-end items-center custom:hidden">
+          <button
+            onClick={() => setOpen(!open)}
+            className="text-[28px] focus:outline-none"
+            aria-label="Toggle Menu"
+          >
             <IoReorderThree />
-          </div>
-          <div>
-            {open ? (
-              <>
-                <ul className="h-full w-[60%] flex items-center justify-around  text-[22px] font-semibold">
-                  <li className="hover:text-indigo-600 hover:scale-105 transition-transform duration-300">
-                    Home
-                  </li>
-                  <li className="hover:text-indigo-600 hover:scale-105 transition-transform duration-300">
-                    About
-                  </li>
-                  <li className="hover:text-indigo-600 hover:scale-105 transition-transform duration-300">
-                    Service
-                  </li>
-                  <li className="hover:text-indigo-600 hover:scale-105 transition-transform duration-300">
-                    Contact
-                  </li>
-                </ul>
-                <button className="text-[18px] bg-gradient-to-r from-teal-200 via-emerald-300 to-green-400 w-[90px] h-[40px] rounded-xl text-black font-bold shadow-md hover:scale-105 transition-transform duration-300">
-                  Log In
-                </button>
-              </>
-            ) : (
-              ""
-            )}
-          </div>
+          </button>
         </div>
 
-        {/* for desktop all nav button */}
-        <div className=" w-[70%] h-full  hidden custom:flex items-center justify-center ">
-          <div className=" w-[35%] h-full flex items-center justify-center ">
-            <div className="w-[90%] h-[60%]  rounded-2xl flex items-center justify-start ps-3 gap-2 ">
-              <div className="text-[23px]">
-                <FiSearch />
-              </div>
-              <input
-                type="text"
-                className="w-[300px] h-[70%] rounded-xl  border-solid border-2 border-black "
-              />
-              <button className="text-[18px] bg-gray-400 w-[80px] h-[30px] hover:scale-105 transition-transform duration-300 rounded-xl text-black font-bold">
-                Search
-              </button>
-            </div>
+        {/* Desktop Nav */}
+        <nav className="w-[70%] hidden custom:flex items-center justify-end gap-6">
+          {/* Search Bar */}
+          <div className="flex items-center gap-2 bg-white px-3 py-1 border border-black rounded-xl">
+            <FiSearch className="text-[20px]" />
+            <input
+              type="text"
+              placeholder="Search..."
+              className="outline-none w-[200px]"
+            />
+            <button className="text-sm bg-gray-400 px-3 py-1 rounded-lg hover:scale-105 transition-transform duration-300">
+              Search
+            </button>
           </div>
-          <ul className="h-full w-[60%] flex items-center justify-around  text-[22px] font-semibold">
-            <li className="hover:text-indigo-600 hover:scale-105 transition-transform duration-300">
-              Home
-            </li>
-            <li className="hover:text-indigo-600 hover:scale-105 transition-transform duration-300">
-              About
-            </li>
-            <li className="hover:text-indigo-600 hover:scale-105 transition-transform duration-300">
-              Service
-            </li>
-            <li className="hover:text-indigo-600 hover:scale-105 transition-transform duration-300">
-              Contact
-            </li>
+
+          {/* Nav Links */}
+          <ul className="flex gap-6 text-[18px] font-semibold">
+            {navLinks.map((link) => (
+              <li
+                key={link}
+                className="hover:text-indigo-600 hover:scale-105 transition-transform duration-300 cursor-pointer"
+              >
+                {link}
+              </li>
+            ))}
           </ul>
-          <button className="text-[18px] bg-gradient-to-r from-teal-200 via-emerald-300 to-green-400 w-[90px] h-[40px] rounded-xl text-black font-bold shadow-md hover:scale-105 transition-transform duration-300">
+
+          {/* Login Button */}
+          <button className="text-sm bg-gradient-to-r from-teal-200 via-emerald-300 to-green-400 px-4 py-2 rounded-xl font-bold shadow-md hover:scale-105 transition-transform duration-300">
+            Log In
+          </button>
+        </nav>
+      </header>
+
+      {/* Mobile Nav Dropdown */}
+      {open && (
+        <div className="absolute top-[70px] w-full z-50 bg-white/95 backdrop-blur-md flex flex-col items-center py-4 gap-4 custom:hidden shadow-lg">
+          <ul className="flex flex-col gap-4 text-[20px] font-semibold">
+            {navLinks.map((link) => (
+              <li
+                key={link}
+                className="hover:text-indigo-600 hover:scale-105 transition-transform duration-300 cursor-pointer"
+              >
+                {link}
+              </li>
+            ))}
+          </ul>
+          <button className="text-sm bg-gradient-to-r from-teal-200 via-emerald-300 to-green-400 px-4 py-2 rounded-xl font-bold shadow-md hover:scale-105 transition-transform duration-300">
             Log In
           </button>
         </div>
-      </div>
+      )}
 
-      <div className="bg-slate-900 w-full h-[90.8%]"></div>
+      {/* Main Content */}
+      <main className="bg-white w-full flex-grow"></main>
     </div>
   );
-}
+};
 
-export default Landing
-
-
-
+export default Landing;
