@@ -8,7 +8,7 @@ const Landing = () => {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="h-screen w-full flex flex-col">
+    <div className="h-auto w-full flex flex-col">
       {/* Header */}
       <header className="h-[70px] w-full flex justify-between items-center px-4">
         {/* Logo */}
@@ -99,7 +99,10 @@ const Landing = () => {
       )}
 
       {/* Main Content */}
-      <main className="bg-white w-full flex-grow"></main>
+      <main className="bg-red-500 w-full h-[100vh] ">
+        {/* auto image scroll */}
+        
+      </main>
     </div>
   );
 };
